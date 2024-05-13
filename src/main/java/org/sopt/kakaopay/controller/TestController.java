@@ -9,7 +9,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String test() {
-        return "합동 세미나 테스트 API 입니다!";
+        return "합동 세미나 테스트 API 입니다!!";
     }
 
     @GetMapping("/test/json")
