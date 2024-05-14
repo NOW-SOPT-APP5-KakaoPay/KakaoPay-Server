@@ -18,8 +18,8 @@ public class Bookmark {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
+    private Member sourceMember;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Account account;
+    private Member tarhetMember;
 }

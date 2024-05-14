@@ -22,4 +22,10 @@ public class Member{
     private String payMoney;
 
     private String payPoint;
+
+    private String bank;
+
+    private String bankAccount;
+
+    private String bankMoney;
 }

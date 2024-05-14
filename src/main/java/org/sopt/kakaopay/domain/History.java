@@ -17,10 +17,10 @@ public class History extends BaseTimeEntity{
     private Long id;
 
     @ManyToOne
-    private Account to;
+    private Member to;
 
     @ManyToOne
-    private Account from;
+    private Member from;
 
     private Long amount;
 
