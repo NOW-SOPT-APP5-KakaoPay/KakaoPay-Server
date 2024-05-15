@@ -17,7 +17,14 @@ public class MemberService {
 
     public Member findMemberById(Long memberId){
         return memberRepository.findById(memberId).orElseThrow(
-            () -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND)
+                () -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND)
+        );
+    }
+
+    public Member findMemberByBankAndBankAccount(String bank, String bankAccount) {
+        return memberRepository.findByBankAndBankAccount(bank, bankAccount).orElseThrow(
+                () -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND)
+
         );
     }
 
