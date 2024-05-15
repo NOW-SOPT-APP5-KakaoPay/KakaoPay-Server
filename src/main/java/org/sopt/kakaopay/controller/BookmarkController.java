@@ -35,7 +35,7 @@ public class BookmarkController {
             .body(SuccessStatusResponse.of(SuccessMessage.BOOKMARK_ADDED_SUCCESS));
 
     }
-}
+
 
     @DeleteMapping
     public ResponseEntity<SuccessStatusResponse> deleteBookmark(

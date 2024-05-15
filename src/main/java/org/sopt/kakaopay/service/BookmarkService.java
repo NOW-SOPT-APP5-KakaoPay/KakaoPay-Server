@@ -1,7 +1,6 @@
 package org.sopt.kakaopay.service;
 
 import jakarta.transaction.Transactional;
-import java.awt.print.Book;
 import lombok.RequiredArgsConstructor;
 import org.sopt.kakaopay.domain.Bookmark;
 import org.sopt.kakaopay.domain.Member;
@@ -11,7 +10,7 @@ import org.sopt.kakaopay.common.dto.ErrorMessage;
 import org.sopt.kakaopay.exception.NotFoundException;
 import org.sopt.kakaopay.service.dto.BookmarkDeleteDto;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 @RequiredArgsConstructor

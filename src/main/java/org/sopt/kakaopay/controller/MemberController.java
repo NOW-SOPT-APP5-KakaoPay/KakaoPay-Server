@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("api/v1/member")
 public class MemberController {
+
     private final MemberService memberService;
 
     @GetMapping("/paypoint")
@@ -34,11 +35,22 @@ public class MemberController {
 
     @GetMapping("/paymoney")
     public ResponseEntity<SuccessStatusResponse<PayMoneyFindDto>> getMemberPayMoney(
-            @RequestHeader("memberId") Long memberId
+        @RequestHeader("memberId") Long memberId
     ) {
         return ResponseEntity.status(HttpStatus.OK)
-                .body(SuccessStatusResponse.of(SuccessMessage.PAYMONEY_FIND_SUCCESS,
-                        memberService.findPayMoneyById(memberId)));
+            .body(SuccessStatusResponse.of(SuccessMessage.PAYMONEY_FIND_SUCCESS,
+                memberService.findPayMoneyById(memberId)));
+    }
+
+
+    @GetMapping("/balance")
+    public ResponseEntity<SuccessStatusResponse<PayMoneyFindDto>> getMemberBalance(
+        @RequestHeader("memberId") Long memberId
+    ) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(SuccessStatusResponse.of(SuccessMessage.BALANCE_FIND_SUCCESS,
+                    memberService.findPayMoneyById(memberId)));
+
     }
 
 

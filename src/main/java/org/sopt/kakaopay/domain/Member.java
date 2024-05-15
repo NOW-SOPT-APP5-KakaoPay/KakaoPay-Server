@@ -30,19 +30,19 @@ public class Member{
 
     private String bankAccount;
 
-    private String bankMoney;
+    private String balance;
 
-    public Member(String userId, String name, String payMoney, String payPoint, String bank, String bankAccount, String bankMoney) {
+    public Member(String userId, String name, String payMoney, String payPoint, String bank, String bankAccount, String balance) {
         this.userId = userId;
         this.name = name;
         this.payMoney = payMoney;
         this.payPoint = payPoint;
         this.bank = bank;
         this.bankAccount = bankAccount;
-        this.bankMoney = bankMoney;
+        this.balance = balance;
     }
 
-    public static Member create(String userId, String name, String payMoney, String payPoint, String bank, String bankAccount, String bankMoney) {
-        return new Member(userId, name, payMoney, payPoint, bank, bankAccount, bankMoney);
+    public static Member create(String userId, String name, String payMoney, String payPoint, String bank, String bankAccount, String balance) {
+        return new Member(userId, name, payMoney, payPoint, bank, bankAccount, balance);
     }
 }
