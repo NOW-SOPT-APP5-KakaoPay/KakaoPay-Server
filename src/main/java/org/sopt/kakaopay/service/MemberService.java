@@ -28,6 +28,13 @@ public class MemberService {
         );
     }
 
+    public Member findMemberByBankAndBankAccount(String bank, String bankAccount) {
+        return memberRepository.findByBankAndBankAccount(bank, bankAccount).orElseThrow(
+            () -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND)
+        );
+    }
+
+
     public PayPointFindDto findPayPointById(Long memberId) {
         Member member = findMemberById(memberId);
         return PayPointFindDto.of(member);
