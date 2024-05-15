@@ -1,9 +1,11 @@
 package org.sopt.kakaopay.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +17,7 @@ public class Member{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String userId;
 
     private String name;
@@ -28,4 +31,18 @@ public class Member{
     private String bankAccount;
 
     private String bankMoney;
+
+    public Member(String userId, String name, String payMoney, String payPoint, String bank, String bankAccount, String bankMoney) {
+        this.userId = userId;
+        this.name = name;
+        this.payMoney = payMoney;
+        this.payPoint = payPoint;
+        this.bank = bank;
+        this.bankAccount = bankAccount;
+        this.bankMoney = bankMoney;
+    }
+
+    public static Member create(String userId, String name, String payMoney, String payPoint, String bank, String bankAccount, String bankMoney) {
+        return new Member(userId, name, payMoney, payPoint, bank, bankAccount, bankMoney);
+    }
 }

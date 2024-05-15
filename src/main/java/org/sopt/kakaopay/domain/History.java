@@ -1,6 +1,7 @@
 package org.sopt.kakaopay.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,12 +17,21 @@ public class History extends BaseTimeEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private Member to;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member sender;
 
-    @ManyToOne
-    private Member from;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member receiver;
 
-    private Long amount;
+    private String amount;
 
+    public History(Member sender, Member receiver, String amount) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.amount = amount;
+    }
+
+    public static History create(Member sender, Member receiver, String amount) {
+        return new History(sender,receiver,amount);
+    }
 }

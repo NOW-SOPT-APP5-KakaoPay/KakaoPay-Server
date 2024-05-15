@@ -21,5 +21,14 @@ public class Bookmark {
     private Member sourceMember;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Member tarhetMember;
+    private Member targetMember;
+
+    public Bookmark(Member sourceMember, Member targetMember) {
+        this.sourceMember = sourceMember;
+        this.targetMember = targetMember;
+    }
+
+    public static Bookmark create(Member sourceMember, Member targetMember) {
+        return new Bookmark(sourceMember,targetMember);
+    }
 }
