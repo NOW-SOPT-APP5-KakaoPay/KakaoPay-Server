@@ -31,21 +31,20 @@ public class HistoryDataInitializer implements ApplicationRunner {
             Member member5 = memberRepository.findById(5L).get();
             History[] histories = new History[] {
                     History.create(member1, member2, "5,000"),
-                    History.create(member1, member3, "15,000"),
+                    History.create(member5, member1, "15,000"),
+                    History.create(member2, member1, "7,000"),
                     History.create(member1, member4, "53,000"),
                     History.create(member1, member5, "9,000"),
-                    History.create(member2, member3, "7,000"),
-                    History.create(member2, member4, "95,000"),
+                    History.create(member4, member2, "95,000"),
                     History.create(member2, member5, "43,000"),
-                    History.create(member2, member1, "2,000"),
+                    History.create(member3, member1, "2,000"),
+                    History.create(member1, member3, "2,000"),
             };
             for (int i = 0; i< histories.length; i++){
-                if (!historyRepository.findById(Long.valueOf(i)).isPresent()){
+                if (!historyRepository.findById(Long.valueOf(i+1)).isPresent()){
                     historyRepository.save(histories[i]);
                 }
             }
-        }else {
-            System.out.println("-----------------not fonud--------------");
         }
     }
 }

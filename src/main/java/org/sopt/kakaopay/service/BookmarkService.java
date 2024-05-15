@@ -16,6 +16,10 @@ public class BookmarkService {
     private final BookmarkRepository bookmarkRepository;
     private final MemberService memberService;
 
+    public Boolean existsBySourceMemberAndTargetMember(Member sourceMember, Member targetMember){
+        return bookmarkRepository.existsBySourceMemberAndTargetMember(sourceMember, targetMember);
+    }
+
     @Transactional
     public void deleteBookmark(Long memberId, BookmarkDeleteDto bookmarkDeleteDto) {
         Member sourceMember = memberService.findMemberById(memberId);

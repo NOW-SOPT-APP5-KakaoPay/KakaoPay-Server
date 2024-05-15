@@ -6,5 +6,6 @@ import org.sopt.kakaopay.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
-    Optional<Bookmark> findBySourceMemberAndTargetMember(Member sourceMember, Member targetMemberTarget);
+    Optional<Bookmark> findBySourceMemberAndTargetMember(Member sourceMember, Member targetMember);
+    Boolean existsBySourceMemberAndTargetMember(Member sourceMember, Member targetMember);
 }
