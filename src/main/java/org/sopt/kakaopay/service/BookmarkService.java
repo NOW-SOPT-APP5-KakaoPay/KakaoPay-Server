@@ -1,7 +1,6 @@
 package org.sopt.kakaopay.service;
 
 import jakarta.transaction.Transactional;
-import java.awt.print.Book;
 import lombok.RequiredArgsConstructor;
 import org.sopt.kakaopay.domain.Bookmark;
 import org.sopt.kakaopay.domain.Member;
