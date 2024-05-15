@@ -8,9 +8,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
+    Optional<Member> findByBankAndBankAccount(String bank, String bankAccount);
+}
+
+
     default Member findByIdOrThrow(Long id) {
         return findById(id).orElseThrow(
             () -> new NotFoundException(ErrorMessage.MEMBER_NOT_FOUND)
         );
     }
 }
+

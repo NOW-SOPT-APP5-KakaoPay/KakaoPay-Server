@@ -10,9 +10,12 @@ public enum SuccessMessage {
 
     BLOG_CREATE_SUCCESS(HttpStatus.CREATED.value(),"블로그 생성이 완료되었습니다."),
 
+    PAYPOINT_FIND_SUCCESS(HttpStatus.OK.value(), "페이포인트 조회가 완료되었습니다."),
+    PAYMONEY_FIND_SUCCESS(HttpStatus.OK.value(), "페이머니 조회가 완료되었습니다."),
 
-    PAYPOINT_FIND_SUCCESS(HttpStatus.OK.value(), "페이포인트 조회가 완료되었습니다.");
-    PAYMONEY_FIND_SUCCESS(HttpStatus.OK.value(), "페이머니 조회가 완료되었습니다."),;
+    BOOKMARK_DELETE_SUCCESS(HttpStatus.OK.value(), "즐겨찾기가 삭제되었습니다.");
+
+
 
 
     private final int status;
