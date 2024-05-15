@@ -34,7 +34,7 @@ public class MemberController {
 
     @GetMapping("/paymoney")
     public ResponseEntity<SuccessStatusResponse<PayMoneyFindDto>> getMemberPayMoney(
-            @RequestHeader Long memberId
+            @RequestHeader("memberId") Long memberId
     ) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(SuccessStatusResponse.of(SuccessMessage.PAYMONEY_FIND_SUCCESS,
