@@ -11,12 +11,15 @@ import org.sopt.kakaopay.exception.NotFoundException;
 import org.sopt.kakaopay.service.dto.BookmarkDeleteDto;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @RequiredArgsConstructor
 public class BookmarkService {
     private final BookmarkRepository bookmarkRepository;
     private final MemberService memberService;
+
+    public Boolean existsBySourceMemberAndTargetMember(Member sourceMember, Member targetMember){
+        return bookmarkRepository.existsBySourceMemberAndTargetMember(sourceMember, targetMember);
+    }
 
     @Transactional
     public void AddBookmark(Long memberId, BookmarkAddDto bookmarkAddDto) {
@@ -28,7 +31,6 @@ public class BookmarkService {
         bookmarkRepository.save(bookmark);
 
     }
-
 
     public void deleteBookmark(Long memberId, BookmarkDeleteDto bookmarkDeleteDto) {
         Member sourceMember = memberService.findMemberById(memberId);

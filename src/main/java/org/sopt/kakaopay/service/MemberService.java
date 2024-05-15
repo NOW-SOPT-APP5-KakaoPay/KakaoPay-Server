@@ -31,7 +31,6 @@ public class MemberService {
         );
     }
 
-
     public PayPointFindDto findPayPointById(Long memberId) {
         Member member = findMemberById(memberId);
         return PayPointFindDto.of(member);
