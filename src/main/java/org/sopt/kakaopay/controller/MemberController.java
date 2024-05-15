@@ -5,6 +5,7 @@ import org.sopt.kakaopay.common.dto.SuccessMessage;
 import org.sopt.kakaopay.common.dto.SuccessStatusResponse;
 import org.sopt.kakaopay.service.MemberService;
 import org.sopt.kakaopay.service.dto.PayPointFindDto;
+import org.sopt.kakaopay.service.dto.PayMoneyFindDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,4 +31,13 @@ public class MemberController {
 
 
 
+
+    @GetMapping("/paymoney")
+    public ResponseEntity<SuccessStatusResponse<PayMoneyFindDto>> getMemberPayMoney(
+            @RequestHeader Long memberId
+    ) {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(SuccessStatusResponse.of(SuccessMessage.PAYMONEY_FIND_SUCCESS,
+                        memberService.findPayMoneyById(memberId)));
+    }
 }

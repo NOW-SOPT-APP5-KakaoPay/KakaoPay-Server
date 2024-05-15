@@ -6,12 +6,14 @@ import org.sopt.kakaopay.domain.Member;
 import org.sopt.kakaopay.exception.NotFoundException;
 import org.sopt.kakaopay.repository.MemberRepository;
 import org.sopt.kakaopay.service.dto.PayPointFindDto;
+import org.sopt.kakaopay.service.dto.PayMoneyFindDto;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
+
 
     public Member findMemberById(Long memberId){
         return memberRepository.findById(memberId).orElseThrow(
@@ -22,6 +24,11 @@ public class MemberService {
     public PayPointFindDto findPayPointById(Long memberId) {
         Member member = findMemberById(memberId);
         return PayPointFindDto.of(member);
+    }
+
+    public PayMoneyFindDto findPayMoneyById(Long memerId){
+        Member member = findMemberById(memerId);
+        return PayMoneyFindDto.of(member);
     }
 
 }
