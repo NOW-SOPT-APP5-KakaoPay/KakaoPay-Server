@@ -11,7 +11,6 @@ import org.sopt.kakaopay.common.dto.ErrorMessage;
 import org.sopt.kakaopay.exception.NotFoundException;
 import org.sopt.kakaopay.service.dto.BookmarkDeleteDto;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +28,6 @@ public class BookmarkService {
         bookmarkRepository.save(bookmark);
 
     }
-
 
     public void deleteBookmark(Long memberId, BookmarkDeleteDto bookmarkDeleteDto) {
         Member sourceMember = memberService.findMemberById(memberId);
