@@ -18,6 +18,10 @@ public class BookmarkService {
     private final BookmarkRepository bookmarkRepository;
     private final MemberService memberService;
 
+    public Boolean existsBySourceMemberAndTargetMember(Member sourceMember, Member targetMember){
+        return bookmarkRepository.existsBySourceMemberAndTargetMember(sourceMember, targetMember);
+    }
+
     @Transactional
     public void AddBookmark(Long memberId, BookmarkAddDto bookmarkAddDto) {
         Member sourceMember = memberService.findMemberById(memberId);
