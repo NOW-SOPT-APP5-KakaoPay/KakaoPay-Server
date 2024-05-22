@@ -1,9 +1,13 @@
 package org.sopt.kakaopay.service;
 
 import jakarta.transaction.Transactional;
+import java.awt.print.Book;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.sopt.kakaopay.domain.Bookmark;
 import org.sopt.kakaopay.domain.Member;
+import org.sopt.kakaopay.exception.BusinessException;
+import org.sopt.kakaopay.exception.ConflictException;
 import org.sopt.kakaopay.repository.BookmarkRepository;
 import org.sopt.kakaopay.service.dto.BookmarkAddDto;
 import org.sopt.kakaopay.common.dto.ErrorMessage;
@@ -26,6 +30,9 @@ public class BookmarkService {
         Member sourceMember = memberService.findMemberById(memberId);
         Member targetMember = memberService.findMemberByBankAndBankAccount(bookmarkAddDto.bank(),
             bookmarkAddDto.bankAccount());
+        if (existsBySourceMemberAndTargetMember(sourceMember, targetMember)){
+            throw new ConflictException(ErrorMessage.BOOKMARK_ALREADY_EXISTS);
+        }
         Bookmark bookmark = new Bookmark(sourceMember, targetMember);
 
         bookmarkRepository.save(bookmark);
@@ -36,10 +43,10 @@ public class BookmarkService {
         Member sourceMember = memberService.findMemberById(memberId);
         Member targetMember = memberService.findMemberByBankAndBankAccount(bookmarkDeleteDto.bank(),
                 bookmarkDeleteDto.bankAccount());
-        Bookmark bookmark = bookmarkRepository.findBySourceMemberAndTargetMember(sourceMember, targetMember).orElseThrow(
-                () -> new NotFoundException(ErrorMessage.BOOKMARK_NOT_FOUND)
-        );
-        bookmarkRepository.delete(bookmark);
+        List<Bookmark> bookmarks = bookmarkRepository.findAllBySourceMemberAndTargetMember(sourceMember, targetMember);
+        for (Bookmark bookmark : bookmarks) {
+            bookmarkRepository.delete(bookmark);
+        }
     }
 }
 

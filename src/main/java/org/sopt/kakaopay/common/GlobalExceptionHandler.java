@@ -2,6 +2,7 @@ package org.sopt.kakaopay.common;
 
 import java.util.Objects;
 import org.sopt.kakaopay.common.dto.ErrorResponse;
+import org.sopt.kakaopay.exception.ConflictException;
 import org.sopt.kakaopay.exception.ForbiddenException;
 import org.sopt.kakaopay.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
@@ -32,5 +33,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MissingRequestHeaderException.class)
     protected ResponseEntity<ErrorResponse> handleMissingRequestHeaderException (MissingRequestHeaderException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorResponse.of(HttpStatus.BAD_REQUEST.value(), e.getMessage()));
+    }
+
+    @ExceptionHandler(ConflictException.class)
+    protected  ResponseEntity<ErrorResponse> handleConflictException (ConflictException e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ErrorResponse.of(HttpStatus.CONFLICT.value(), e.getMessage()));
     }
 }
