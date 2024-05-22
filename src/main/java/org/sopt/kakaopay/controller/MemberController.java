@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.sopt.kakaopay.common.dto.SuccessMessage;
 import org.sopt.kakaopay.common.dto.SuccessStatusResponse;
 import org.sopt.kakaopay.service.MemberService;
+import org.sopt.kakaopay.service.dto.BalanceFindDto;
 import org.sopt.kakaopay.service.dto.PayPointFindDto;
 import org.sopt.kakaopay.service.dto.PayMoneyFindDto;
 import org.springframework.http.HttpStatus;
@@ -44,13 +45,12 @@ public class MemberController {
 
 
     @GetMapping("/balance")
-    public ResponseEntity<SuccessStatusResponse<PayMoneyFindDto>> getMemberBalance(
+    public ResponseEntity<SuccessStatusResponse<BalanceFindDto>> getMemberBalance(
         @RequestHeader("memberId") Long memberId
     ) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(SuccessStatusResponse.of(SuccessMessage.BALANCE_FIND_SUCCESS,
-                    memberService.findPayMoneyById(memberId)));
-
+                    memberService.findBalanceById(memberId)));
     }
 
 
