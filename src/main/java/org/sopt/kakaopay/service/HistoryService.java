@@ -2,6 +2,7 @@ package org.sopt.kakaopay.service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import javax.swing.LookAndFeel;
@@ -24,7 +25,7 @@ public class HistoryService {
         Member sourceMember = memberService.findMemberById(memberId);
         List<History> histories = historyRepository.findAllBySenderOrReceiverOrderByCreatedAtDesc(sourceMember, sourceMember);
 
-        Set<Member> uniqueMember = new HashSet<>();
+        Set<Member> uniqueMember = new LinkedHashSet<>();
         List<Boolean> bookmarks = new ArrayList<>();
 /*
         sourceMember의 최신 거래 내역에서 겹치지 않는 3명의 상대방 필터링
@@ -49,7 +50,7 @@ public class HistoryService {
             bookmarks.add(bookmark);
         }
 
-        return HistoryFindDto.findAll(uniqueMember.stream().toList(), bookmarks);
+        return HistoryFindDto.findAll(new ArrayList<>(uniqueMember), bookmarks);
 
     }
 
